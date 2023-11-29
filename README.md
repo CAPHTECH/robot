@@ -1,39 +1,44 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Robot
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+This library is designed to facilitate the use of the Robot pattern when developing apps using the Flutter framework. The Robot pattern is a software testing technique that aims to encapsulate a repetitive series of user actions into classes that can be re-used efficiently to simulate & test user interaction with the app, allowing the development of higher-quality applications.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Provides the Robot class that can be extended to create a Robot for each widget in the app.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+### 1. Add this to your package's `pubspec.yaml` file
+
+```yaml
+dev_dependencies:
+  robot: ^0.0.1
+```
+
+### 2. Install it by running the following command at the root of your project
+
+```sh
+flutter pub get
+```
+
+### 3. Import it by adding the following import statement to your Flutter test code
+
+```dart
+import 'package:robot/robot.dart';
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Create a Robot class for each widget in the app that you want to test. The Robot class should extend the Robot class from the Robot package.
 
 ```dart
-const like = 'sample';
+class MyWidgetRobot extends Robot {
+  MyWidgetRobot(super.tester);
+}
 ```
 
-## Additional information
+See more details on how to use this package in the [robot_test.dart](./test/robot_test.dart) file.
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+## LICENSE
+
+MIT License
