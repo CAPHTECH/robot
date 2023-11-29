@@ -1,11 +1,11 @@
 name: robot
-description: "A new Flutter package project."
+description: "Robot is a robot pattern testing library for Flutter."
 version: 0.0.1
-homepage:
+homepage: https://github.com/CAPHTECH/robot
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
-  flutter: ">=1.17.0"
+  sdk: ">=3.1.0 <4.0.0"
+  flutter: ">=3.13.0"
 
 dependencies:
   flutter:
