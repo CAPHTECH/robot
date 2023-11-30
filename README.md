@@ -32,9 +32,48 @@ import 'package:robot/robot.dart';
 Create a Robot class for each widget in the app that you want to test. The Robot class should extend the Robot class from the Robot package.
 
 ```dart
-class MyWidgetRobot extends Robot {
+class MyWidgetRobot extends Robot<MyWidget> {
   MyWidgetRobot(super.tester);
+
+  late String text;
+
+  Finder get textFinder => find.descendant(of: this, matching: find.text(text));
+
+  Future<void> show() => tester.pumpWidget(MaterialApp(home: MyWidget(text: text)));
+
+  void expectText() => expect(textFinder, findsOneWidget);
 }
+```
+
+Create a test file for each widget in the app that you want to test. The test file should import the Robot class for the widget and the Flutter test package.
+
+```dart
+import 'package:flutter_test/flutter_test.dart';
+import 'package:robot/robot.dart';
+
+import 'my_widget_robot.dart';
+
+void main() {
+  group('MyWidget', () {
+    testWidgets('should show text', (tester) async {
+      final robot = MyWidgetRobot(tester)..text = 'Hello, World!';
+      await robot.show();
+      robot.expectText();
+    });
+  });
+}
+```
+
+It can be useful to use the Robot class directly.
+
+```dart
+Robot<Text> get countText => Robot.byKey(tester, const Key('count'));
+```
+
+That can be used like this.
+
+```dart
+countText.expectText('Count: $i');
 ```
 
 See more details on how to use this package in the [robot_test.dart](./test/robot_test.dart) file.
