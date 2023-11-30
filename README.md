@@ -73,7 +73,7 @@ Robot<Text> get countText => Robot.byKey(tester, const Key('count'));
 That can be used like this.
 
 ```dart
-countText.expectText('Count: $i');
+countText.expectText('Count: 0');
 ```
 
 See more details on how to use this package in the [robot_test.dart](./test/robot_test.dart) file.
