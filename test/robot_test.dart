@@ -43,7 +43,7 @@ class MyWidgetRobot extends Robot<MyWidget> {
 
   /// This getter uses find.descendant() to find the Text widget with the given text.
   /// Because it is a descendant of the TestWidget, it is a descendant of this Robot.
-  Finder get _textFinder => find.descendant(of: this, matching: find.text(text));
+  Finder get textFinder => find.descendant(of: this, matching: find.text(text));
 
   /// This getter uses super.descendant() to find the MyButton widget.
   /// Because it is a descendant of the TestWidget, it is a descendant of this
@@ -60,7 +60,7 @@ class MyWidgetRobot extends Robot<MyWidget> {
 
   /// [expectText] checks that the text is shown.
   /// It uses the _textFinder getter to find the Text widget.
-  void expectText() => expect(_textFinder, findsOneWidget);
+  void expectText() => expect(textFinder, findsOneWidget);
 
   void expectCount(int i) {
     count.expectShown();
