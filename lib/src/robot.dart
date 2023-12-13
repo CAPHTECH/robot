@@ -52,6 +52,8 @@ class Robot<T extends Widget> extends Finder {
 
   @override
   void runCached(VoidCallback run) => _finder.runCached(run);
+
+  T get widget => tester.widget<T>(this);
 }
 
 extension RobotExpectation on Robot {
@@ -60,7 +62,7 @@ extension RobotExpectation on Robot {
 }
 
 extension TextRobot on Robot<Text> {
-  String? get text => tester.widget<Text>(this).data;
+  String? get text => widget.data;
 
   void expectText(String text) => expect(text, this.text);
 }

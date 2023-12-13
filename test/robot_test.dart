@@ -32,6 +32,15 @@ void main() {
     await robot.countUpButton.tap();
     robot.expectCount(1);
   });
+
+  testWidgets('get widget', (tester) async {
+    final robot = MyWidgetRobot(tester)
+      ..text = 'Hello, World!'; // This line creates the Robot with the tester and sets the text property.
+
+    await robot.show();
+
+    expect(robot.widget, isA<MyWidget>());
+  });
 }
 
 /// This class is the Robot for the MyWidget. It uses super() to find the MyWidget
