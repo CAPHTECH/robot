@@ -1,6 +1,6 @@
 name: robot
 description: "Robot is a robot pattern testing library for Flutter."
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/CAPHTECH/robot
 
 environment:
