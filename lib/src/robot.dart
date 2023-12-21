@@ -56,6 +56,39 @@ class Robot<T extends Widget> extends Finder {
   T get widget => tester.widget<T>(this);
 }
 
+extension RobotAction on Robot {
+  Future<void> tap({String? text, Key? key, Finder? finder, bool waitAfter = true}) async {
+    final target = finder ??
+        (key != null
+            ? find.byKey(key)
+            : (text != null ? find.text(text) : throw ArgumentError('text or key or finder must be provided')));
+    await tester.tap(target);
+    if (waitAfter) await tester.pumpAndSettle();
+  }
+
+  Future<void> enterText(String input, {String? text, Key? key, Finder? finder, bool waitAfter = true}) async {
+    final target = finder ??
+        (key != null
+            ? find.byKey(key)
+            : text != null
+                ? find.text(text)
+                : throw ArgumentError('text or key or finder must be provided'));
+    await tester.enterText(target, input);
+    if (waitAfter) await tester.pumpAndSettle();
+  }
+
+  Future<void> eraseText({String? text, Key? key, Finder? finder, bool waitAfter = true}) async {
+    final target = finder ??
+        (key != null
+            ? find.byKey(key)
+            : text != null
+                ? find.text(text)
+                : throw ArgumentError('text or key or finder must be provided'));
+    await tester.enterText(target, '');
+    if (waitAfter) await tester.pumpAndSettle();
+  }
+}
+
 extension RobotExpectation on Robot {
   void expectShown() => expect(this, findsOneWidget);
   void expectHidden() => expect(this, findsNothing);
@@ -72,4 +105,14 @@ extension TapRobot on Robot<ButtonStyleButton> {
     await tester.tap(this);
     if (waitAfter) await tester.pumpAndSettle();
   }
+}
+
+extension TextFieldRobot on Robot<TextField> {
+  String? get text => widget.controller?.text;
+
+  TextEditingController? get controller => widget.controller;
+
+  Future<void> enter(String text, {bool waitAfter = true}) => enterText(text, finder: this, waitAfter: waitAfter);
+
+  Future<void> erase({bool waitAfter = true}) => eraseText(finder: this, waitAfter: waitAfter);
 }

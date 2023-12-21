@@ -41,6 +41,22 @@ void main() {
 
     expect(robot.widget, isA<MyWidget>());
   });
+
+  testWidgets('TextFieldRobot', (tester) async {
+    final robot = Robot<TextField>(tester);
+
+    final controller = TextEditingController();
+    addTearDown(() => controller.dispose());
+
+    await tester.pumpWidget(MaterialApp(home: Scaffold(body: TextField(controller: controller))));
+
+    await robot.enter('test');
+    expect(controller.text, 'test');
+    expect(robot.controller!.text, 'test');
+
+    await robot.erase();
+    expect(controller.text, '');
+  });
 }
 
 /// This class is the Robot for the MyWidget. It uses super() to find the MyWidget
