@@ -1,3 +1,7 @@
+## 0.0.4
+
+- Update README
+
 ## 0.0.3
 
 - Add helper methods

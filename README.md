@@ -12,7 +12,7 @@ This library is designed to facilitate the use of the Robot pattern when develop
 
 ```yaml
 dev_dependencies:
-  robot: ^0.0.1
+  robot: ^0.0.4
 ```
 
 ### 2. Install it by running the following command at the root of your project
